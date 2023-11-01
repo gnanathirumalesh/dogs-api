@@ -34,7 +34,8 @@
             border-radius: 18px;
             background-color: rgb(83, 83, 222);
             color:white;
-            border:1px solid white ;
+            border:1px solid rgb(235, 235, 235);
+            cursor: pointer;
 
         }
 
@@ -51,13 +52,25 @@
         const URL = "https://dog.ceo/api/breeds/image/random";
         img = document.getElementById("dog");
         btn = document.getElementById("getDog");
-        btn.addEventListener("click", function(){
-            fetch(URL).then((res) => {
-    return res.json();
+
+// on page load
+window.addEventListener("load", function() {
+fetch(URL)
+.then((res) => res.json())
+.then((data) => {
+img.src = data.message;
+img.alt = data.message;
+});
+});
+
+// on clicking on a button
+btn.addEventListener("click", function(){
+fetch(URL).then((res) => {
+return res.json();
 }).then((data) => {
-    console.log(data);
-    img.src = data.message;
-    img.alt = data.message;
+console.log(data);
+img.src = data.message;
+img.alt = data.message;
 });
         })
        
